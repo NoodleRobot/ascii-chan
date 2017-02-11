@@ -6,7 +6,7 @@ from google.appengine.ext import db
 
 template_dir=os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env=jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),
-                                autoescape = True)
+                                autoescape = True) #autoescape will escape html
 
 class Handler(webapp2.RequestHandler):
     def write(self, *a, **kw):
@@ -19,12 +19,13 @@ class Handler(webapp2.RequestHandler):
     def render(self,template,**kw):
         self.write(self.render_str(template, **kw))
 
-class Art(db.model):
+class Art(db.model): #represent submission from user, inherits from db.model (creates entity)
     pass 
     
 class MainPage(Handler):
     def render_front(self, title="", art="", error="error"):
-        self.render("front.html", title=title, art=art, error=error)
+        self.render("front.html", title=title, art=art, error=error) #pass in variables so 
+                                                                #they can be used in the form
 
     def get (self):
         self.render("front.html")
@@ -37,7 +38,7 @@ class MainPage(Handler):
             self.write("Thank you!")
         else:
             error="DOES NOT COMPUTE!!"
-            self.render_front(title, art, error)
+            self.render_front(title, art, error)#sends in error, title and art
 
 
 
