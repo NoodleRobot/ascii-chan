@@ -19,6 +19,7 @@ class Handler(webapp2.RequestHandler):
     def render(self,template,**kw):
         self.write(self.render_str(template, **kw))
 
+
 class Art(db.Model): #represent submission from user, inherits from db.model (creates entity)
     title = db.StringProperty(required=True)#tells google this is string type
     art = db.TextProperty(required=True)
